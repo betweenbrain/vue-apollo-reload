@@ -21,7 +21,9 @@ export default {
         };
       },
       watchLoading(isLoading) {
-        console.log(`Categories loading ${isLoading}`);
+        if (isLoading) {
+          console.log('Loading categories');
+        }
       },
     },
     GetPosts: {
@@ -43,7 +45,9 @@ export default {
         };
       },
       watchLoading(isLoading) {
-        console.log(`Posts loading ${isLoading}`);
+        if (isLoading) {
+          console.log('Loading posts');
+        }
       },
     },
   },
@@ -59,9 +63,11 @@ export default {
       switch (type) {
         case 'categories':
           this.skipCategoriesQuery = false;
+          // this.$apollo.queries.GetCategories.refetch();
           break;
         case 'posts':
           this.skipPostsQuery = false;
+          // this.$apollo.queries.GetPosts.refetch();
           break;
         default:
           break;
