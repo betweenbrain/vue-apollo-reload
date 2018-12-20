@@ -9,7 +9,7 @@ export default {
       query: GetCategories,
       result(data) {
         console.log(`Got ${data.data.categories.edges.length} categories(s)`);
-        // this.skipCategoriesQuery = true;
+        this.skipCategoriesQuery = true;
       },
       skip() {
         return this.skipCategoriesQuery;
@@ -31,7 +31,7 @@ export default {
       query: GetPosts,
       result(data) {
         console.log(`Got ${data.data.posts.edges.length} post(s)`);
-        // this.skipPostsQuery = true;
+        this.skipPostsQuery = true;
       },
       skip() {
         return this.skipPostsQuery;
