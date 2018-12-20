@@ -1,18 +1,18 @@
 <script>
-import DataProvider from "@/mixins/DataProvider";
+import DataProvider from '@/mixins/DataProvider';
 
 export default {
   mixins: [DataProvider],
   mounted() {
-    this.getData("categories");
+    this.getData('categories');
   },
-  name: "about",
+  name: 'about',
   render() {
     return (
       <div>
         <h1>About</h1>
       </div>
     );
-  }
+  },
 };
 </script>
