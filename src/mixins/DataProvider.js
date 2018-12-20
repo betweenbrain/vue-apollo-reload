@@ -20,6 +20,9 @@ export default {
           first: this.first,
         };
       },
+      watchLoading(isLoading) {
+        console.log(`Categories loading ${isLoading}`);
+      },
     },
     GetPosts: {
       error(err) {
@@ -38,6 +41,9 @@ export default {
         return {
           first: this.first,
         };
+      },
+      watchLoading(isLoading) {
+        console.log(`Posts loading ${isLoading}`);
       },
     },
   },
