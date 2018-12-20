@@ -4,6 +4,7 @@ import DataProvider from '@/mixins/DataProvider';
 export default {
   mixins: [DataProvider],
   mounted() {
+    console.log('skipCategoriesQuery', this.skipCategoriesQuery);
     this.getData('categories');
   },
   name: 'about',
