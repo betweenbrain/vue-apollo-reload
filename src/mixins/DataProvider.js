@@ -9,6 +9,7 @@ export default {
       query: GetCategories,
       result(data) {
         console.log(`Got ${data.data.categories.edges.length} categories(s)`);
+        console.log('Got results, setting skipCategoriesQuery to true');
         this.skipCategoriesQuery = true;
       },
       skip() {
@@ -33,6 +34,7 @@ export default {
       query: GetPosts,
       result(data) {
         console.log(`Got ${data.data.posts.edges.length} post(s)`);
+        console.log('Got results, setting skipPostsQuery to true');
         this.skipPostsQuery = true;
       },
       skip() {
@@ -62,10 +64,14 @@ export default {
     getData(type) {
       switch (type) {
         case 'categories':
+          console.log('skipCategoriesQuery is ', this.skipCategoriesQuery);
+          console.log('Setting skipCategoriesQuery to false in getData()');
           this.skipCategoriesQuery = false;
           // this.$apollo.queries.GetCategories.refetch();
           break;
         case 'posts':
+          console.log('skipPostsQuery is ', this.skipPostsQuery);
+          console.log('Setting skipPostsQuery to false in getData()');
           this.skipPostsQuery = false;
           // this.$apollo.queries.GetPosts.refetch();
           break;
