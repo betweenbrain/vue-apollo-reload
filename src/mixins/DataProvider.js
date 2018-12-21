@@ -9,7 +9,7 @@ export default {
       query: GetCategories,
       result(data) {
         console.log(`Got ${data.data.categories.edges.length} categories(s)`);
-        console.log('Got results, setting skipCategoriesQuery to true');
+        console.log('Got results, setting skipCategoriesQuery to %c%s', 'color: red; font-weight: bold', 'true');
         this.skipCategoriesQuery = true;
       },
       skip() {
@@ -23,7 +23,7 @@ export default {
       },
       watchLoading(isLoading) {
         if (isLoading) {
-          console.log('Loading categories');
+          console.log('Loading %c%s', 'color: #fff; background: #222', 'categories');
         }
       },
     },
@@ -34,7 +34,7 @@ export default {
       query: GetPosts,
       result(data) {
         console.log(`Got ${data.data.posts.edges.length} post(s)`);
-        console.log('Got results, setting skipPostsQuery to true');
+        console.log('Got results, setting skipPostsQuery to %c%s', 'color: red; font-weight: bold', 'true');
         this.skipPostsQuery = true;
       },
       skip() {
@@ -48,7 +48,7 @@ export default {
       },
       watchLoading(isLoading) {
         if (isLoading) {
-          console.log('Loading posts');
+          console.log('Loading %c%s', 'color: #fff; background: #222', 'posts');
         }
       },
     },
@@ -62,16 +62,20 @@ export default {
   },
   methods: {
     getData(type) {
+      let css = '';
+      console.log('\n');
       switch (type) {
         case 'categories':
-          console.log('skipCategoriesQuery is ', this.skipCategoriesQuery);
-          console.log('Setting skipCategoriesQuery to false in getData()');
+          css = (this.skipCategoriesQuery) ? 'color: red; font-weight: bold' : 'color: green; font-weight: bold';
+          console.log('skipCategoriesQuery is %c%s', css, this.skipCategoriesQuery);
+          console.log('Setting skipCategoriesQuery to %c%s', 'color: green; font-weight: bold', 'false');
           this.skipCategoriesQuery = false;
           // this.$apollo.queries.GetCategories.refetch();
           break;
         case 'posts':
-          console.log('skipPostsQuery is ', this.skipPostsQuery);
-          console.log('Setting skipPostsQuery to false in getData()');
+          css = (this.skipPostsQuery) ? 'color: red; font-weight: bold' : 'color: green; font-weight: bold';
+          console.log('skipPostsQuery is %c%s', css, this.skipPostsQuery);
+          console.log('Setting skipPostsQuery to %c%s', 'color: green; font-weight: bold', 'false');
           this.skipPostsQuery = false;
           // this.$apollo.queries.GetPosts.refetch();
           break;
