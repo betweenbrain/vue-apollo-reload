@@ -31,7 +31,6 @@ export default {
   data() {
     return {
       first: 1,
-      skipCategoriesQuery: true,
       skipPostsQuery: true,
     };
   },
