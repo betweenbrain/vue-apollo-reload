@@ -55,6 +55,7 @@ export default {
   },
   data() {
     return {
+      first: 1,
       skipCategoriesQuery: true,
       skipPostsQuery: true,
     };
@@ -69,14 +70,18 @@ export default {
           console.log('skipCategoriesQuery is %c%s', css, this.skipCategoriesQuery);
           console.log('Setting skipCategoriesQuery to %c%s', 'color: green; font-weight: bold', 'false');
           this.skipCategoriesQuery = false;
-          // this.$apollo.queries.GetCategories.refetch();
+          this.$apollo.queries.GetCategories.refetch({
+            first: this.getRandomInt(10),
+          });
           break;
         case 'posts':
           css = (this.skipPostsQuery) ? 'color: red; font-weight: bold' : 'color: green; font-weight: bold';
           console.log('skipPostsQuery is %c%s', css, this.skipPostsQuery);
           console.log('Setting skipPostsQuery to %c%s', 'color: green; font-weight: bold', 'false');
           this.skipPostsQuery = false;
-          this.$apollo.queries.GetPosts.refetch();
+          this.$apollo.queries.GetPosts.refetch({
+            first: this.getRandomInt(10),
+          });
           break;
         default:
           break;
