@@ -15,16 +15,3 @@ export const GetPosts = gql`
     }
   }
 `;
-
-export const GetCategories = gql`
-query GetCategories($first: Int!) {
-    categories(first: $first){
-      edges{
-        node{
-          categoryId
-          name
-        }
-      }
-    }
-  }
-`;
