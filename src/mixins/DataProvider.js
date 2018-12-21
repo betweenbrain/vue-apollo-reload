@@ -1,49 +1,61 @@
-import { GetPosts } from '@/graphql/Queries';
+import { GetPostById } from '@/graphql/Queries';
 
 export default {
   apollo: {
-    GetPosts: {
+    GetPostById: {
       error(err) {
         console.log(err);
       },
-      query: GetPosts,
+      query: GetPostById,
       result(data) {
-        console.log(`Got ${data.data.posts.edges.length} post(s)`);
-        console.log('Got results, setting skipPostsQuery to %c%s', 'color: red; font-weight: bold', 'true');
-        this.skipPostsQuery = true;
+        console.log('Got post %c%s', 'font-style: italic', data.data.postBy.title);
+
+        this.$set(this.posts, data.data.postBy.postId, data.data.postBy);
+
+        console.log(
+          'Got results, setting skipQuery to %c%s',
+          'color: red; font-weight: bold',
+          'true',
+        );
+
+        this.skipQuery = true;
       },
       skip() {
-        return this.skipPostsQuery;
+        return this.skipQuery;
       },
       update: data => data.getPosts,
       variables() {
         return {
-          first: this.first,
+          id: this.postId,
         };
       },
       watchLoading(isLoading) {
         if (isLoading) {
-          console.log('Loading %c%s', 'color: #fff; background: #222', 'posts');
+          console.log('Loading %c%s', 'color: #fff; background: #222', 'post');
         }
       },
     },
   },
   data() {
     return {
-      first: 1,
-      skipPostsQuery: true,
+      postId: null,
+      posts: {},
+      skipQuery: true,
     };
   },
   methods: {
-    getData(type) {
+    getData(type, value) {
       console.log('\n');
       switch (type) {
-        case 'posts':
-          const css = (this.skipPostsQuery) ? 'color: red; font-weight: bold' : 'color: green; font-weight: bold';
-          console.log('skipPostsQuery is %c%s', css, this.skipPostsQuery);
-          console.log('Setting skipPostsQuery to %c%s', 'color: green; font-weight: bold', 'false');
+        case 'post':
+          const css = this.skipQuery
+            ? 'color: red; font-weight: bold'
+            : 'color: green; font-weight: bold';
+          console.log('skipQuery is %c%s', css, this.skipQuery);
+          console.log('Setting skipQuery to %c%s', 'color: green; font-weight: bold', 'false');
 
-          this.skipPostsQuery = false;
+          this.postId = value;
+          this.skipQuery = false;
           break;
         default:
           break;

@@ -1,17 +1,14 @@
 import gql from 'graphql-tag';
 
-export const GetPosts = gql`
-  query GetPosts($first: Int!) {
-    posts(first: $first) {
-      edges {
-        node {
-          author {
-            name
-          }
-          postId
-          title
-        }
-      }
+export const GetPostById = gql`
+query GetPostsByID($id: ID!) {
+  postBy(postId: $id){
+    author{
+      name
     }
+    content
+    postId
+    title
   }
+}
 `;
