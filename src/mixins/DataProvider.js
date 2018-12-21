@@ -51,11 +51,13 @@ export default {
           const css = this.skipQuery
             ? 'color: red; font-weight: bold'
             : 'color: green; font-weight: bold';
+
           console.log('skipQuery is %c%s', css, this.skipQuery);
           console.log('Setting skipQuery to %c%s', 'color: green; font-weight: bold', 'false');
 
           this.postId = value;
           this.skipQuery = false;
+          // this.$apollo.queries.GetPostById.refetch();
           break;
         default:
           break;
