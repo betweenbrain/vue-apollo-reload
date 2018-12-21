@@ -55,7 +55,6 @@ export default {
   },
   data() {
     return {
-      first: 1,
       skipCategoriesQuery: true,
       skipPostsQuery: true,
     };
@@ -77,11 +76,14 @@ export default {
           console.log('skipPostsQuery is %c%s', css, this.skipPostsQuery);
           console.log('Setting skipPostsQuery to %c%s', 'color: green; font-weight: bold', 'false');
           this.skipPostsQuery = false;
-          // this.$apollo.queries.GetPosts.refetch();
+          this.$apollo.queries.GetPosts.refetch();
           break;
         default:
           break;
       }
+    },
+    getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
     },
   },
 };
