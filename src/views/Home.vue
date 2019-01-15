@@ -4,11 +4,11 @@ import DataProvider from '@/mixins/DataProvider';
 export default {
   mixins: [DataProvider],
   mounted() {
-    this.getData('post', 126750);
+    this.getData('post', 466);
   },
   name: 'home',
   render() {
-    const post = this.posts[126750];
+    const post = this.posts[466];
 
     return (
       post ? (

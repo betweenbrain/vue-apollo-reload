@@ -9,7 +9,7 @@ Vue.use(VueApollo);
 const AUTH_TOKEN = 'apollo-token';
 
 // Http endpoint
-const httpEndpoint = 'https://app-2-0-guggenheim.pantheonsite.io/graphql';
+const httpEndpoint = 'https://www.wpgraphql.com/graphql';
 
 // Config
 const defaultOptions = {
